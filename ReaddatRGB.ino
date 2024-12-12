@@ -20,15 +20,15 @@ void setup() {
   Serial.print("Initializing SD card...");
 
   if (!SD.begin(CHIP_SELECT)) {
-    Serial.println("initialization failed!");
+    Serial.println("Initialization failed!");
     return;
   }
-  Serial.println("initialization done.");
+  Serial.println("Initialization done.");
 }
 
 void loop() {
-  // Mở tệp "D0.dat" trên thẻ SD
-  file = SD.open("Traidat1.dat");
+  // Mở tệp trên thẻ SD
+  file = SD.open("filename.dat");
   if (!file) {
     Serial.println("Error opening file");
     return;
@@ -43,9 +43,19 @@ void loop() {
       leds[j].b = file.read();
     }
 
+    reduceBrightness(0.1); // Giảm sáng 
     FastLED.show();
     delay(40); // Độ trễ giữa các khung hình
   }
 
   file.close(); // Đóng tệp
+}
+
+// Hàm giảm độ sáng
+void reduceBrightness(float factor) {
+  for (int i = 0; i < NUM_LEDS; i++) {
+    leds[i].r = leds[i].r * factor;
+    leds[i].g = leds[i].g * factor;
+    leds[i].b = leds[i].b * factor;
+  }
 }
