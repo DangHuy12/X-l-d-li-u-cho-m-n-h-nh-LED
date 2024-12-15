@@ -3,7 +3,7 @@
 #include <Adafruit_NeoPixel.h> // Thư viện Adafruit_NeoPixel để điều khiển LED
 
 #define NUM_LEDS 220           // Số lượng LED WS2812B
-#define DATA_PIN 7             // Chân điều khiển LED
+#define DATA_PIN 6             // Chân điều khiển LED
 const uint8_t chipSelect = 10; // Chân chọn SD (thường là 10)
 
 // Khởi tạo đối tượng LED strip
@@ -21,7 +21,7 @@ void setup() {
 }
 
 void loop() {
-  File file = SD.open("Mario1.txt");  // Mở file chứa dữ liệu
+  File file = SD.open("Filename.txt");  // Mở file chứa dữ liệu
 
   if (!file) {
     Serial.println("Không thể mở file!");
